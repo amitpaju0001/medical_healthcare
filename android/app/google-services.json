@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "797691254357",
+    "project_id": "medical-healthcare-4f9e1",
+    "storage_bucket": "medical-healthcare-4f9e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797691254357:android:4a3ed37be92fa9560ea6dc",
+        "android_client_info": {
+          "package_name": "com.example.medical_healthcare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1J9K2lDAlP6Qc5Z5XYwtOqKQjRPXlCkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
