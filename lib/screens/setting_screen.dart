@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:medical_healthcare/auth/provider/auth_provider.dart';
+import 'package:medical_healthcare/auth/ui/login_screen.dart';
 import 'package:medical_healthcare/shared/const/assets_const.dart';
 import 'package:medical_healthcare/shared/const/string_const.dart';
 import 'package:medical_healthcare/widgets/reuse_list_tile.dart';
+import 'package:provider/provider.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -74,7 +77,39 @@ class _SettingScreenState extends State<SettingScreen> {
           ),
           const Divider(height: 40),
           ReuseListTile(
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('Confirm Logout'),
+                    content: const Text('Are you sure you want to logout?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          final provider = Provider.of<AuthProvider>(context, listen: false);
+                          provider.logout();
+                          if (!provider.isError) {
+                            Navigator.of(context).pop();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => const LoginScreen()),
+                            );
+                          }
+                        },
+                        child: const Text('Confirm'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
             colors: Colors.redAccent.shade100,
             icon: Icons.logout,
             text: StringConst.settingLogOut,

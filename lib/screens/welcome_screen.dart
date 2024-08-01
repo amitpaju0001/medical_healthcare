@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:medical_healthcare/screens/login_screen.dart';
+import 'package:medical_healthcare/auth/ui/login_screen.dart';
+import 'package:medical_healthcare/auth/ui/sign_up_screen.dart';
 import 'package:medical_healthcare/shared/const/assets_const.dart';
 import 'package:medical_healthcare/shared/const/color_const.dart';
 import 'package:medical_healthcare/shared/const/string_const.dart';
 import 'package:medical_healthcare/widgets/navbar_roots.dart';
-import 'package:medical_healthcare/screens/sign_up_screen.dart';
+
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -86,7 +87,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
+                            builder: (context) =>  LoginScreen(),
                           ));
                     },
                     child: const Padding(
@@ -110,7 +111,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const SignUpScreen(),
+                            builder: (context) =>  SignUpScreen(),
                           ));
                     },
                     child: const Padding(

@@ -17,98 +17,100 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(top: 40),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  StringConst.headerName,
-                  style: TextStyle(
-                    fontSize: 34,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                CircleAvatar(
-                  radius: 24,
-                  backgroundImage: AssetImage(
-                    AssetsConst.drImages,
-                  ),
-                )
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          const ReuseRow(),
-          const SizedBox(
-            height: 24,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 14),
-            child: Text(
-              StringConst.patientSymptoms,
-              style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black54),
-            ),
-          ),
-          SizedBox(
-            height: 70,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: symptomsList.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  decoration: BoxDecoration(
-                      color: ColorConst.reUsedWhiteColor,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 4,
-                            spreadRadius: 2)
-                      ]),
-                  child: Center(
-                    child: Text(
-                      symptomsList[index],
-                      style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black54),
+    return Scaffold(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 40),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    StringConst.headerName,
+                    style: TextStyle(
+                      fontSize: 34,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                );
-              },
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 16),
-            child: Text(
-              StringConst.popularDoctors,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-                color: Colors.black54,
+                  CircleAvatar(
+                    radius: 24,
+                    backgroundImage: AssetImage(
+                      AssetsConst.drImages,
+                    ),
+                  )
+                ],
               ),
             ),
-          ),
-          ReuseGridView()
-        ],
+            const SizedBox(
+              height: 30,
+            ),
+            const ReuseRow(),
+            const SizedBox(
+              height: 24,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 14),
+              child: Text(
+                StringConst.patientSymptoms,
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black54),
+              ),
+            ),
+            SizedBox(
+              height: 70,
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: symptomsList.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin:
+                        const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    decoration: BoxDecoration(
+                        color: ColorConst.reUsedWhiteColor,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 4,
+                              spreadRadius: 2)
+                        ]),
+                    child: Center(
+                      child: Text(
+                        symptomsList[index],
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 16),
+              child: Text(
+                StringConst.popularDoctors,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black54,
+                ),
+              ),
+            ),
+            ReuseGridView()
+          ],
+        ),
       ),
     );
   }

@@ -59,6 +59,7 @@ class StringConst {
   static const signUpPassword = 'Email Password';
   static const signUpLogin = 'Log In';
   static const signUp = 'Sign Up';
+  static const signUpConfirmPassword = 'Confirm Password';
   static const signUpAlreadyAccount = ' Already have an account?';
   static const welcomeSkip = 'SKIP';
   static const welcomeDrAppointment = 'Doctors Appointment';
