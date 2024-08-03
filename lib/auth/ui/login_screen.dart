@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_healthcare/auth/model/user_model.dart';
+import 'package:medical_healthcare/auth/ui/forgot_password_screen.dart';
 import 'package:medical_healthcare/widgets/navbar_roots.dart';
 import 'package:provider/provider.dart';
 import 'package:medical_healthcare/auth/provider/auth_provider.dart';
@@ -113,6 +114,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
+                TextButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const ForgotPasswordScreen();
+                  },));
+                }, child: const Text(
+                    'Forgot Password ?'
+                )),
                 const SizedBox(
                   height: 20,
                 ),
