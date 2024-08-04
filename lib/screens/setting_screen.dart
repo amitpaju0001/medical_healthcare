@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:medical_healthcare/auth/provider/auth_provider.dart';
+import 'package:medical_healthcare/auth/provider/custom_auth_provider.dart';
 import 'package:medical_healthcare/auth/ui/login_screen.dart';
 import 'package:medical_healthcare/shared/const/assets_const.dart';
 import 'package:medical_healthcare/shared/const/string_const.dart';
@@ -93,7 +93,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          final provider = Provider.of<AuthProvider>(context, listen: false);
+                          final provider = Provider.of<CustomAuthProvider>(context, listen: false);
                           provider.logout();
                           if (!provider.isError) {
                             Navigator.of(context).pop();

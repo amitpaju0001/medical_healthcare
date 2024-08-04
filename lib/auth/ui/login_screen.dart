@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medical_healthcare/auth/model/user_model.dart';
 import 'package:medical_healthcare/auth/ui/forgot_password_screen.dart';
 import 'package:medical_healthcare/widgets/navbar_roots.dart';
 import 'package:provider/provider.dart';
-import 'package:medical_healthcare/auth/provider/auth_provider.dart';
+import 'package:medical_healthcare/auth/provider/custom_auth_provider.dart';
 import 'package:medical_healthcare/auth/ui/sign_up_screen.dart';
 import 'package:medical_healthcare/shared/const/assets_const.dart';
 import 'package:medical_healthcare/shared/const/color_const.dart';
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Material(
       color: ColorConst.reUsedWhiteColor,
-      child: Consumer<AuthProvider>(builder: (context, provider, child) {
+      child: Consumer<CustomAuthProvider>(builder: (context, provider, child) {
         return SingleChildScrollView(
           child: SafeArea(
             child: Column(
@@ -86,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           UserModel userModel = UserModel(
                               email: emailController.text.trim(),
                               password: passwordController.text.trim());
-                          AuthProvider provider = Provider.of<AuthProvider>(context, listen: false);
+                          CustomAuthProvider provider = Provider.of<CustomAuthProvider>(context, listen: false);
                           await provider.login(userModel);
                           if (!provider.isError) {
                             Navigator.pushReplacement(
@@ -110,6 +111,30 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 50,
+                  child: Center(
+                    child: GestureDetector(
+                      onTap: ()async {
+                        CustomAuthProvider provider = Provider.of(context,listen: false);
+                        await provider.googleLogin();
+                        if(!provider.isError){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const NavBarRoots(),));
+                        }
+                      },
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(FontAwesomeIcons.google,size: 20,),
+                          SizedBox(width: 5,),
+                          Text('Google Login',style: TextStyle(
+                            fontSize: 18,color: Colors.blue,fontWeight: FontWeight.bold
+                          ),)
+                        ],
                       ),
                     ),
                   ),

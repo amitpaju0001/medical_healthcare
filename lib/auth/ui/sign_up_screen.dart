@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:medical_healthcare/auth/model/user_model.dart';
 import 'package:provider/provider.dart';
-import 'package:medical_healthcare/auth/provider/auth_provider.dart';
+import 'package:medical_healthcare/auth/provider/custom_auth_provider.dart';
 import 'package:medical_healthcare/auth/ui/login_screen.dart';
 import 'package:medical_healthcare/shared/const/assets_const.dart';
 import 'package:medical_healthcare/shared/const/color_const.dart';
@@ -28,7 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Material(
       color: ColorConst.reUsedWhiteColor,
-      child: Consumer<AuthProvider>(builder: (context, provider, child) {
+      child: Consumer<CustomAuthProvider>(builder: (context, provider, child) {
         return SingleChildScrollView(
           child: SafeArea(
             child: Column(
@@ -144,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               email: emailController.text.trim(),
                               password: passwordController.text.trim(),
                             );
-                            AuthProvider provider = Provider.of<AuthProvider>(context, listen: false);
+                            CustomAuthProvider provider = Provider.of<CustomAuthProvider>(context, listen: false);
                             await provider.createAccount(userModel);
                             if (!provider.isError) {
                               Navigator.pop(context);

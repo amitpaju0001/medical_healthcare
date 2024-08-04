@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,7 +9,7 @@ import 'package:medical_healthcare/auth/model/user_model.dart';
 import 'package:medical_healthcare/auth/service/auth_service.dart';
 import 'package:medical_healthcare/core/storage_helper.dart';
 
-class AuthProvider extends ChangeNotifier {
+class CustomAuthProvider extends ChangeNotifier {
   bool isLoading = false;
   bool isError = false;
   bool isLoggedIn = false;
@@ -97,6 +99,26 @@ class AuthProvider extends ChangeNotifier {
       Fluttertoast.showToast(msg: 'Auth Error ${e.code}');
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());
+    }
+  }
+  Future googleLogin()async{
+    try{
+      isError = false;
+      isLoading = true;
+      notifyListeners();
+      AuthService authService = Get.find();
+      await authService.googleLogin();
+      StorageHelper storageHelper = Get.find();
+      storageHelper.saveLoginStatus();
+      isLoading = false;
+      notifyListeners();
+      Fluttertoast.showToast(msg: 'Google sign in successful ');
+
+    }catch (e){
+      isError = true;
+      isLoading = false;
+      notifyListeners();
+      Fluttertoast.showToast(msg: 'Google sign in failed: $e');
     }
   }
   Future loadLoginStatus()async{
