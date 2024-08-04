@@ -13,7 +13,8 @@ class CustomAuthProvider extends ChangeNotifier {
   bool isLoading = false;
   bool isError = false;
   bool isLoggedIn = false;
-
+  String? _verificationId;
+  String? get verificationId => _verificationId;
   Future createAccount(UserModel userModel) async {
     try {
       isError = false;
@@ -121,6 +122,48 @@ class CustomAuthProvider extends ChangeNotifier {
       Fluttertoast.showToast(msg: 'Google sign in failed: $e');
     }
   }
+  Future verifyPhoneNumber(String phoneNumber)async{
+    try{
+      isLoading = true;
+      isError = false;
+      notifyListeners();
+      AuthService authService = Get.find();
+      await authService.verifyPhoneNumber(phoneNumber, (verificationId) {
+        _verificationId = verificationId;
+        isLoading = false;
+        notifyListeners();
+      }, (error) {
+        isLoading = false;
+        isError = true;
+        notifyListeners();
+        Fluttertoast.showToast(msg: 'Phone Auth Error: ${error.message}');
+      });
+    }catch (e) {
+      isLoading = false;
+      isError = true;
+      notifyListeners();
+      Fluttertoast.showToast(msg: e.toString());
+    }
+  }
+  Future  signInWithOtp(String verificationId, String otp) async {
+    try {
+      isLoading = true;
+      isError = false;
+      notifyListeners();
+
+      AuthService authService = Get.find();
+      await authService.signInWithOtp(verificationId, otp);
+
+      isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      isLoading = false;
+      isError = true;
+      notifyListeners();
+      Fluttertoast.showToast(msg: 'Invalid OTP');
+    }
+  }
+
   Future loadLoginStatus()async{
     StorageHelper storageHelper = Get.find();
     isLoggedIn = await storageHelper.getLoginStatus();
