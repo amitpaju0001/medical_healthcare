@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medical_healthcare/auth/model/user_model.dart';
@@ -47,10 +46,11 @@ class AuthService {
       phoneNumber: phoneNumber,
       verificationCompleted: (PhoneAuthCredential credential) {},
       verificationFailed: verificationFailed,
-      codeSent: (verificationId, resendToken) {
+      codeSent: (String verificationId,int? resendToken) {
         codeSent(verificationId);
       },
       codeAutoRetrievalTimeout: (verificationId) {},
+      timeout: const Duration(seconds: 120)
     );
   }
   Future signInWithOtp(String verificationId, String otp)async{

@@ -38,9 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.all(20),
                   child: Image.asset(AssetsConst.drImages),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+
                 Padding(
                   padding: const EdgeInsets.all(12),
                   child: TextField(
@@ -52,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 4,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(12),
@@ -100,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: const Padding(
                           padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 40),
                           child: Center(
                             child: Text(
                               'Log In',
@@ -116,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Container(
-                  height: 50,
+                  height: 40,
                   child: Center(
                     child: GestureDetector(
                       onTap: ()async {
@@ -146,9 +144,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 }, child: const Text(
                     'Forgot Password ?'
                 )),
-                const SizedBox(
-                  height: 20,
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

@@ -31,13 +31,13 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<CustomAuthProvider>(builder:(context, provider, child) {
         return MaterialApp(
-          title: 'Flutter Demo',
           theme: ThemeData(
 
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
           home: provider.isLoggedIn?NavBarRoots():LoginScreen(),
+          debugShowCheckedModeBanner: false,
         );
       }
       ),
